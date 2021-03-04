@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ClinicSalutemSystem.ShowMyPatients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicSalutemSystem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Background="AntiqueWhite" Loaded="Load_Data" MouseEnter="Load">
+        <Label Content="MOI PACJENCI" FontSize="30" HorizontalAlignment="Center" Foreground="OrangeRed" FontWeight="Bold"/>
+        <WrapPanel>
+            <WrapPanel Height="70"  Margin="10">
+                <Label Content="Wyszukaj" Height="40" Width="80" Background="#FFF49039" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="txtSearch" Text="{Binding ElementName=Date, Path=SelectedDate, StringFormat=dd.MM.yyyy}" Width="200" Height="40" FontSize="20" TextChanged="txtFilter_TextChanged" Background="#EB9744"/>
+                <DatePicker x:Name="Date" Background="#FFF49039" Width="30" Height="40" CalendarStyle="{StaticResource CalendarStyle}"/>
+            </WrapPanel>
+
+        </WrapPanel>
+        <DockPanel >
+            <ListView x:Name="ListOfPatients" ItemContainerStyle="{StaticResource ItemContainerStyle}" Background="Bisque" DockPanel.Dock="Left" Margin="20"  Height="275" Width="610">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource HeaderStyle}">
+                        <GridViewColumn Header="Imię" Width="150" DisplayMemberBinding="{Binding PatientName}"/>
+                        <GridViewColumn Header="Nazwisko" Width="150" DisplayMemberBinding="{Binding PatientSurname}"/>
+                        <GridViewColumn Header="Dzień wizyty" Width="150" DisplayMemberBinding="{Binding PatientVisitDay, StringFormat='dd.MM.yyyy'}"/>
+                        <GridViewColumn Header="Godzina" Width="150" DisplayMemberBinding="{Binding PatientVisitTime}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+       
+    </StackPanel>
+</UserControl>

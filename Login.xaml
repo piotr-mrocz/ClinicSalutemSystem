@@ -1,0 +1,31 @@
+﻿<Window x:Class="ClinicSalutemSystem.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClinicSalutemSystem"
+        mc:Ignorable="d"
+        Title="Logowanie" Height="620" Width="450" FontSize="20">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="OrangeRed" Offset="0.10" />
+            <GradientStop Color="Yellow" Offset="0.75" />
+            <GradientStop Color="OrangeRed" Offset="1.0" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <StackPanel Margin="15">
+        <Image Source="Images/LOGO.png" />
+        <Label FontSize="45" Foreground="White" HorizontalAlignment="Center">
+            Logowanie
+        </Label>
+        <Separator></Separator>
+        <Label Content="Login" Foreground="White" Padding="10"/>
+        <TextBox x:Name="UserName" KeyDown="Enter_KeyDown" Background="#2e3137" FontSize="25" Foreground="OrangeRed" Padding="5" />
+        <Label Content="Hasło" Foreground="White" Padding="10" />
+        <PasswordBox x:Name="UserPassword" KeyDown="Enter_KeyDown" Background="#2e3137" FontSize="25" Foreground="OrangeRed" Padding="5" />
+
+        <Button x:Name="Submit" Style="{StaticResource MouseOverColor}" KeyDown="Enter_KeyDown" Margin="15" Content="Zaloguj się"   Width="300" Click="Submit_Click"/>
+        <Separator></Separator>
+        <Button x:Name ="Exit" Style="{StaticResource MouseOverColor}" Margin="20"  Content="Wyjście" Width="150" Click="Exit_Click"/>
+    </StackPanel>
+</Window>

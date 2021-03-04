@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="ClinicSalutemSystem.ChangeUserData"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClinicSalutemSystem"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Background="AntiqueWhite"  Loaded="Load_Data">
+        <Label Content="EDYTOWANIE DANYCH UŻYTKOWNIKÓW" FontSize="30" HorizontalAlignment="Center" Foreground="OrangeRed" FontWeight="Bold"/>
+
+        <TabControl x:Name="UserChanges" Margin="20" Padding="5">
+            <TabItem Header="Dodaj użytkownika" FontSize="15">
+                <StackPanel>
+                    <Label Content="DODAWANIE UŻYTKOWNIKA" FontSize="20" HorizontalAlignment="Center" Foreground="OrangeRed" FontWeight="Bold" />
+
+                    <Separator Margin="10" Height="15" Background="OrangeRed" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Imię:" Margin="10" Width="100" Background="#FFF49039" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="NewUserName" Width="150" Height="30" Style="{StaticResource StyleForTextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Nazwisko:"  Margin="10" Width="100" Background="#FFF49039" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="NewUserSurname" Width="150" Height="30"  Style="{StaticResource StyleForTextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Pesel:"  Margin="10" Width="100" Background="#FFF49039" HorizontalContentAlignment="Center"/>
+                        <TextBox x:Name="NewUserPesel" Width="150" Height="30" ToolTip="Podaj numer PESEL. Numer musi składać się z 11 cyfr." MaxLength="11" PreviewTextInput="NumberValidationTextBox"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Profesja:"  Margin="10" Width="100" Background="#FFF49039" HorizontalContentAlignment="Center"/>
+                        <ComboBox x:Name="NewUserProfession" Width="150" Height="30" ToolTip="Wybierz zawód" SelectionChanged="VisibilityComboBox">
+                            <ComboBoxItem>Pielęgniarka</ComboBoxItem>
+                            <ComboBoxItem>Lekarz</ComboBoxItem>
+                            <ComboBoxItem>Administrator</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" x:Name="ComboBoxSpecialization">
+                        <Label Content="Specjalizacja:" Margin="10" Width="100" Background="#FFF49039" HorizontalContentAlignment="Center"/>
+
+                        <ComboBox  x:Name="NewUserSpecialization" Width="150" Height="30" ToolTip="Wybierz specjalizację">
+                            <ComboBoxItem>Stomatolog</ComboBoxItem>
+                            <ComboBoxItem >Ginekolog</ComboBoxItem>
+                            <ComboBoxItem>Kardiolog</ComboBoxItem>
+                            <ComboBoxItem>Endokrynolog</ComboBoxItem>
+                            <ComboBoxItem>Ortopeda</ComboBoxItem>
+                        </ComboBox>
+
+                        <TextBlock x:Name="ErrorNoSpecialization" Visibility="Hidden" Height="30" Foreground="Red" FontWeight="Bold"/>
+
+                    </StackPanel>
+                    <Button BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Width="200" Click="AddUser">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AddCircle" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Dodaj" ToolTip="Naciśnij, aby zapisać wprowadzone zmiany" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Usuń lub edytuj użytkownika" MouseEnter="Load">
+                <StackPanel Background="AntiqueWhite" >
+                    <Label Content="EDYCJA UŻYTKOWNIKA" FontSize="20" HorizontalAlignment="Center" Foreground="OrangeRed" FontWeight="Bold" />
+                    <Separator Margin="10" Height="15" Background="OrangeRed" />
+                    <WrapPanel>
+                        <Label Content="Wyszukaj"  Margin="10" Width="80" Background="#FFF49039" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="txtSearch" FontSize="20" TextChanged="txtFilter_TextChanged" Width="200" Height="35" Background="#EB9744"/>
+                    </WrapPanel>
+                    <Grid>
+                        <ListView x:Name="ListOfUsers" ItemContainerStyle="{StaticResource ItemContainerStyle}" SelectionMode="Single" Background="Bisque"  Margin="5" Height="200">
+                            <ListView.View>
+                                <GridView ColumnHeaderContainerStyle="{StaticResource HeaderStyle}">
+                                    <GridViewColumn Header="Imię" DisplayMemberBinding="{Binding UserName}" Width="100"/>
+                                    <GridViewColumn Header="Nazwisko" DisplayMemberBinding="{Binding UserSurname}" Width="100"/>
+                                    <GridViewColumn Header="PESEL" DisplayMemberBinding="{Binding UserPesel}" Width="120"/>
+                                    <GridViewColumn Header="Profesja" DisplayMemberBinding="{Binding UserProfession}" Width="120"/>
+                                    <GridViewColumn Header="Specjalizacja" DisplayMemberBinding="{Binding UserSpecialization}" Width="120"/>
+                                    <GridViewColumn Header="Login" DisplayMemberBinding="{Binding UserLogin}" Width="120"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="RemoveUser" Style="{StaticResource MouseOverColor}" Content="Usuń użytkownika z bazy" Width="350" Click="RemoveUser_Click"/>
+                        <Button x:Name="UpdateUser" Style="{StaticResource MouseOverColor}" Content="Edytuj dane użytkownika" Width="350" Click="UpdateUser_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</UserControl>

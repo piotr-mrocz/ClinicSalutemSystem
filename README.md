@@ -1,0 +1,2 @@
+# ClinicSalutemSystem
+Unfinished project

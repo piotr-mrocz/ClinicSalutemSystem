@@ -1,0 +1,98 @@
+﻿<Window x:Class="ClinicSalutemSystem.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClinicSalutemSystem"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Klinika Salutem" Height="620" Width="1000">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#f78d02">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="175.2"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="0,0,-0.4,345.4" Grid.RowSpan="2">
+                <Ellipse Height="100" Width="100" Margin="72,10,77.6,139.6" >
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource ="Images/admin.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+            <Grid Background="#f78d02" Margin="0,150,-0.4,0.4" Grid.RowSpan="2">
+                <StackPanel>
+                    <Label Content="MENU" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="OrangeRed"/>
+
+                    <Button  BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Click="ListOfEmployees">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ClipboardList" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Lista użytkowników" ToolTip="Wyświetl wszystkich użytkowników" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Click="ListOfPatients">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="UserSupervisor" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Lista pacjentów" ToolTip="Wyświetl wszystkich pacjentów" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Click="ChangeYourPassword">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Zmień swoje hasło" ToolTip="Tu możesz zmienić swoje hasło" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Click="ChangeUsers">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TrackChanges" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Edytuj użytkowników" FontSize="24" ToolTip="Zmień dane użytkowników kliniki" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button BorderBrush="{x:Null}" HorizontalAlignment="Stretch" Style="{StaticResource MouseOverColor}" Click="Visit">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FormatIndentDecrease" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Wizyty pacjentów" FontSize="24" ToolTip="Zmień dane użytkowników kliniki" ToolTipService.ShowDuration="500"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Separator Margin="10" Background="OrangeRed" />
+
+                    <Button BorderBrush="{x:Null}" Style="{StaticResource MouseOverColor}" Click="Exit">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Logout" Style="{StaticResource MaterialDesignStyle}"/>
+                            <TextBlock Text="Wyloguj się" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#f78d02">
+                    <Image Source="Images/LOGO.png"/>
+                    <Label x:Name="actualTime" Foreground="Wheat" FontSize="17"  VerticalAlignment="Top" HorizontalAlignment="Right" ContentStringFormat="HH:mm:ss"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="AntiqueWhite">
+                    <ContentControl x:Name="MainContent" />
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="100" >
+
+        </StackPanel>
+    </Grid>
+</Window>
